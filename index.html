@@ -2,144 +2,183 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CINEXAU MUSIC HOUSE - Du talent brut à la scène mondiale. Production, distribution, image, promotion et services créatifs assistés par IA pour artistes.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="CINEXAU MUSIC HOUSE - Du talent brut à la scène mondiale. Production musicale, distribution, visuels, clips IA et bien plus.">
     <title>CINEXAU MUSIC HOUSE | Du talent brut à la scène mondiale</title>
-    <!-- Favicon avec le logo -->
+    <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/exaucenapopolo/CINEXAU-MUSIC-HOUSE/refs/heads/main/logo%20cinexau.jpg">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts : Inter + Space Grotesk pour un look moderne -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background: #fafbff;
-            color: #1a1a2e;
-            line-height: 1.7;
+            background: #0a0a0f;
+            color: #ffffff;
+            line-height: 1.6;
             overflow-x: hidden;
         }
+        h1, h2, h3, .logo-text, .btn, .nav-links a {
+            font-family: 'Space Grotesk', sans-serif;
+        }
         .container {
-            max-width: 1280px;
+            max-width: 1300px;
             margin: auto;
             padding: 0 30px;
         }
 
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff7f3f;
+            border-radius: 4px;
+        }
+
         /* Header */
         header {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(14px);
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            background: rgba(10,10,20,0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        header.scrolled {
+            background: rgba(10,10,20,0.95);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
         }
         nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 15px 0;
             flex-wrap: wrap;
         }
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
         .logo-img {
-            height: 48px;
+            height: 44px;
             width: auto;
-            border-radius: 12px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .logo-img:hover {
+            transform: scale(1.05);
         }
         .logo-text {
             font-weight: 800;
-            font-size: 1.4rem;
-            background: linear-gradient(135deg, #4a00e0, #8e2de2);
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #ff7f3f, #ff3f81);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
         }
         .nav-links {
             display: flex;
-            gap: 28px;
             align-items: center;
-            flex-wrap: wrap;
+            gap: 30px;
         }
         .nav-links a {
+            color: #ccc;
             text-decoration: none;
-            color: #2d2d44;
             font-weight: 500;
-            transition: 0.3s;
             font-size: 0.95rem;
+            transition: 0.3s;
+            position: relative;
         }
         .nav-links a:hover {
-            color: #7b2ff7;
+            color: #ff7f3f;
+        }
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #ff7f3f;
+            border-radius: 2px;
         }
         .btn-login {
-            background: linear-gradient(135deg, #7b2ff7, #4a00e0);
+            background: linear-gradient(135deg, #ff7f3f, #ff3f81);
             color: white !important;
             padding: 10px 24px;
             border-radius: 50px;
             font-weight: 600;
-            box-shadow: 0 8px 20px rgba(123, 47, 247, 0.3);
             transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(255,127,63,0.3);
         }
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(123, 47, 247, 0.4);
+            box-shadow: 0 8px 25px rgba(255,63,129,0.4);
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: white;
+            margin: 4px 0;
+            transition: 0.3s;
         }
 
         /* Hero Section */
         .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 50% 0%, #1a1a3e 0%, #0a0a0f 70%);
             position: relative;
-            padding: 80px 0 100px;
-            background: linear-gradient(135deg, #f0f2ff 0%, #ffffff 60%);
             overflow: hidden;
+            padding-top: 80px;
         }
-        .hero-bg-shapes {
+        .hero-bg-elements {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.4;
         }
-        .hero-bg-shapes .shape {
+        .floating-circle {
             position: absolute;
             border-radius: 50%;
+            background: rgba(255,127,63,0.08);
             filter: blur(60px);
         }
-        .shape1 {
-            width: 450px;
-            height: 450px;
-            background: #7b2ff7;
-            top: -150px;
-            right: -100px;
-            opacity: 0.15;
-        }
-        .shape2 {
-            width: 350px;
-            height: 350px;
-            background: #f0932b;
-            bottom: -80px;
-            left: -80px;
-            opacity: 0.15;
-        }
-        .shape3 {
-            width: 280px;
-            height: 280px;
-            background: #00d2ff;
-            top: 30%;
-            left: 60%;
-            opacity: 0.1;
-        }
+        .circle1 { width: 500px; height: 500px; top: -150px; right: -100px; }
+        .circle2 { width: 400px; height: 400px; bottom: -100px; left: -80px; background: rgba(255,63,129,0.08); }
+        .circle3 { width: 300px; height: 300px; top: 40%; left: 70%; }
         .hero-content {
             position: relative;
             z-index: 2;
@@ -147,28 +186,29 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 50px;
         }
         .hero-text {
             flex: 1 1 500px;
         }
         .hero-text h1 {
-            font-size: 3.4rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #1a1a2e, #4a00e0);
+            font-size: 4.2rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #ffffff 0%, #ffb347 50%, #ff3f81 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .hero-text .slogan {
-            font-size: 1.4rem;
-            color: #555;
-            margin-bottom: 30px;
-            font-style: italic;
-            border-left: 4px solid #7b2ff7;
+            font-size: 1.3rem;
+            color: #a0a0b8;
+            margin-bottom: 35px;
+            border-left: 3px solid #ff7f3f;
             padding-left: 20px;
+            font-weight: 500;
+            font-style: italic;
         }
         .hero-cta {
             display: flex;
@@ -176,321 +216,273 @@
             flex-wrap: wrap;
         }
         .btn-primary {
-            background: linear-gradient(135deg, #7b2ff7, #4a00e0);
+            background: linear-gradient(135deg, #ff7f3f, #ff3f81);
             color: white;
-            padding: 16px 38px;
+            padding: 16px 36px;
             border-radius: 60px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             transition: 0.3s;
-            box-shadow: 0 10px 30px rgba(123, 47, 247, 0.4);
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            box-shadow: 0 10px 30px rgba(255,127,63,0.4);
+            border: none;
+            cursor: pointer;
         }
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(123, 47, 247, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(255,63,129,0.5);
         }
         .btn-outline {
             background: transparent;
-            border: 2px solid #7b2ff7;
-            color: #7b2ff7;
-            padding: 16px 38px;
+            border: 2px solid #ff7f3f;
+            color: #ff7f3f;
+            padding: 16px 36px;
             border-radius: 60px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             transition: 0.3s;
             display: inline-flex;
             align-items: center;
             gap: 10px;
         }
         .btn-outline:hover {
-            background: #7b2ff7;
-            color: white;
+            background: #ff7f3f;
+            color: #0a0a0f;
         }
-        .hero-illustration {
-            flex: 1 1 400px;
+        .hero-visual {
+            flex: 1 1 450px;
             position: relative;
             z-index: 2;
         }
-        .hero-illustration img {
+        .hero-visual img {
             width: 100%;
-            max-width: 550px;
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+            max-width: 600px;
+            filter: drop-shadow(0 0 40px rgba(255,127,63,0.3));
+            animation: float 5s ease-in-out infinite;
         }
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-18px); }
-            100% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
-        /* Services Highlights under hero */
-        .service-highlights {
+        /* Counter Section */
+        .counter-section {
             display: flex;
-            justify-content: center;
-            gap: 30px;
+            justify-content: space-around;
             flex-wrap: wrap;
-            margin-top: -40px;
+            gap: 30px;
+            padding: 40px 0;
+            margin-top: -50px;
             position: relative;
             z-index: 10;
+            background: rgba(20,20,35,0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            margin-left: 30px;
+            margin-right: 30px;
         }
-        .highlight-card {
-            background: white;
-            border-radius: 28px;
-            padding: 35px 30px;
-            width: 260px;
+        .counter-item {
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-            transition: 0.4s;
-            border: 1px solid rgba(0,0,0,0.03);
+            padding: 20px;
         }
-        .highlight-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 50px rgba(123, 47, 247, 0.15);
-        }
-        .highlight-card i {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #7b2ff7, #f0932b);
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff7f3f, #ff3f81);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
         }
-        .highlight-card h3 {
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .highlight-card p {
-            color: #666;
-            font-size: 0.95rem;
+        .counter-label {
+            color: #aaa;
+            margin-top: 5px;
         }
 
-        /* Section titles */
-        .section-title {
-            font-size: 2.6rem;
-            font-weight: 800;
-            margin-bottom: 25px;
-            text-align: center;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
         }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #7b2ff7, #f0932b);
-            border-radius: 4px;
-        }
-        .section-subtitle {
+        .section-header {
             text-align: center;
-            color: #555;
             margin-bottom: 60px;
-            font-size: 1.1rem;
         }
-
-        /* Services Grid */
-        .services-detailed {
-            padding: 90px 0;
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff, #ffb347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-header p {
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
         }
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
         .service-card {
-            background: white;
+            background: rgba(20,20,35,0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 24px;
             padding: 40px 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.04);
             transition: 0.4s;
-            border: 1px solid #f0f0f0;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,127,63,0.08) 0%, rgba(255,63,129,0.08) 100%);
+            opacity: 0;
+            transition: 0.4s;
+        }
+        .service-card:hover::before {
+            opacity: 1;
         }
         .service-card:hover {
-            box-shadow: 0 25px 50px rgba(123, 47, 247, 0.12);
-            transform: translateY(-5px);
-            border-color: #e0d4ff;
+            transform: translateY(-10px);
+            border-color: rgba(255,127,63,0.4);
+            box-shadow: 0 20px 40px rgba(255,127,63,0.15);
         }
         .service-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #f0e7ff, #e1d4ff);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-        .service-icon i {
-            font-size: 2.4rem;
-            color: #7b2ff7;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff7f3f, #ff3f81);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
         }
         .service-card h3 {
             font-weight: 700;
             font-size: 1.5rem;
             margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
         }
         .service-card p {
-            color: #555;
-            flex-grow: 1;
+            color: #aaa;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
-        .service-card .btn-service {
-            align-self: flex-start;
+        .btn-service {
             background: transparent;
-            border: 2px solid #7b2ff7;
-            color: #7b2ff7;
-            padding: 10px 24px;
-            border-radius: 50px;
+            border: 1px solid #ff7f3f;
+            color: #ff7f3f;
+            padding: 8px 20px;
+            border-radius: 30px;
             font-weight: 600;
             text-decoration: none;
             transition: 0.3s;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
         }
-        .service-card .btn-service:hover {
-            background: #7b2ff7;
-            color: white;
-        }
-
-        /* How it works */
-        .how-works {
-            background: #f8f9ff;
-            padding: 80px 0;
-        }
-        .steps {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
-        .step {
-            text-align: center;
-            max-width: 220px;
-        }
-        .step-number {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #7b2ff7, #4a00e0);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 800;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 25px rgba(123, 47, 247, 0.3);
-        }
-        .step h4 {
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .step p {
-            color: #666;
+        .btn-service:hover {
+            background: #ff7f3f;
+            color: #0a0a0f;
         }
 
-        /* Projects */
-        .projects {
+        /* Battles Preview */
+        .battles-preview {
             padding: 80px 0;
+            background: linear-gradient(135deg, #111122 0%, #0a0a0f 100%);
         }
-        .project-grid {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .project-card {
-            background: white;
+        .battle-card {
+            background: rgba(20,20,35,0.6);
             border-radius: 24px;
-            overflow: hidden;
-            width: 300px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-        .project-card:hover {
-            transform: translateY(-8px);
-        }
-        .project-img {
-            height: 180px;
-            background: linear-gradient(135deg, #7b2ff7, #f0932b);
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.05);
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
         }
-        .project-info {
-            padding: 20px;
-        }
-        .project-info h4 {
+        .battle-info h3 {
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 8px;
         }
-        .project-info p {
-            color: #666;
-            font-size: 0.9rem;
+        .battle-progress {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .battle-bar {
+            width: 100%;
+            height: 8px;
+            background: #2a2a3f;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .battle-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff7f3f, #ff3f81);
+            width: 65%;
+            border-radius: 4px;
+            transition: width 0.5s;
         }
 
-        /* FAQ */
-        .faq {
+        /* FAQ Section */
+        .faq-section {
             padding: 80px 0;
-            background: #fafbff;
         }
-        .faq-container {
-            max-width: 800px;
-            margin: auto;
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
         }
         .faq-item {
-            background: white;
+            background: rgba(20,20,35,0.4);
             border-radius: 16px;
-            margin-bottom: 18px;
-            padding: 25px 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            padding: 25px;
             cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.03);
             transition: 0.3s;
-            border: 1px solid #f0f0f0;
         }
         .faq-item:hover {
-            border-color: #d0c4ff;
+            border-color: rgba(255,127,63,0.3);
         }
         .faq-question {
+            font-weight: 700;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 700;
-            font-size: 1.1rem;
         }
         .faq-answer {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease, margin-top 0.4s;
-            color: #555;
-            line-height: 1.7;
+            color: #aaa;
             margin-top: 0;
         }
         .faq-item.active .faq-answer {
-            max-height: 300px;
+            max-height: 200px;
             margin-top: 15px;
         }
 
         /* Footer */
         footer {
-            background: #1a1a2e;
-            color: #ddd;
+            background: #07070e;
             padding: 60px 0 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
-        .footer-grid {
+        .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
@@ -502,33 +494,33 @@
             font-weight: 700;
         }
         .footer-col a {
-            display: block;
-            color: #aaa;
+            color: #777;
             text-decoration: none;
+            display: block;
             margin-bottom: 10px;
             transition: 0.3s;
         }
         .footer-col a:hover {
-            color: #7b2ff7;
+            color: #ff7f3f;
         }
-        .social-icons a {
-            color: #aaa;
-            margin-right: 15px;
+        .social-links a {
             font-size: 1.4rem;
+            margin-right: 15px;
+            color: #777;
             transition: 0.3s;
         }
-        .social-icons a:hover {
-            color: #7b2ff7;
+        .social-links a:hover {
+            color: #ff7f3f;
         }
         .copyright {
             text-align: center;
-            border-top: 1px solid #2a2a44;
+            color: #555;
             padding-top: 25px;
-            color: #777;
+            border-top: 1px solid #1a1a2a;
             font-size: 0.9rem;
         }
 
-        /* WhatsApp Float */
+        /* WhatsApp Button */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -553,36 +545,52 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: flex;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(10,10,20,0.95);
+                padding: 20px;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
             .hero-content {
                 flex-direction: column;
                 text-align: center;
             }
-            .hero-text h1 {
-                font-size: 2.4rem;
-            }
-            .hero-illustration {
+            .hero-visual {
                 order: -1;
             }
-            .service-highlights {
-                margin-top: 20px;
+            .counter-section {
+                margin: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
+    <header id="mainHeader">
         <div class="container">
             <nav>
                 <div class="logo-area">
                     <img src="https://raw.githubusercontent.com/exaucenapopolo/CINEXAU-MUSIC-HOUSE/refs/heads/main/logo%20cinexau.jpg" alt="CINEXAU Logo" class="logo-img">
                     <span class="logo-text">CINEXAU</span>
                 </div>
-                <div class="nav-links">
-                    <a href="#">Accueil</a>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#" class="active">Accueil</a>
                     <a href="#services">Services</a>
+                    <a href="#battles">Battles</a>
                     <a href="#artistes">Artistes</a>
-                    <a href="battles.html">Battles</a>
                     <a href="#faq">FAQ</a>
                     <a href="connexion.html" class="btn-login"><i class="fas fa-user"></i> Espace Artiste</a>
                 </div>
@@ -590,197 +598,159 @@
         </div>
     </header>
 
-    <!-- HERO -->
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-bg-shapes">
-            <div class="shape shape1"></div>
-            <div class="shape shape2"></div>
-            <div class="shape shape3"></div>
+        <div class="hero-bg-elements">
+            <div class="floating-circle circle1"></div>
+            <div class="floating-circle circle2"></div>
+            <div class="floating-circle circle3"></div>
         </div>
         <div class="container hero-content">
             <div class="hero-text">
-                <h1>Du talent brut<br>à la scène mondiale</h1>
-                <p class="slogan">Production, distribution, image, promotion et création assistée par IA – tout au même endroit.</p>
+                <h1>Du talent brut à la scène mondiale</h1>
+                <p class="slogan">CINEXAU MUSIC HOUSE propulse votre carrière musicale grâce à une gamme complète de services : production, distribution, visuels, clips IA, et bien plus.</p>
                 <div class="hero-cta">
-                    <a href="inscription.html" class="btn-primary"><i class="fas fa-rocket"></i> Rejoindre en tant qu'artiste</a>
-                    <a href="#services" class="btn-outline"><i class="fas fa-chevron-down"></i> Découvrir nos services</a>
+                    <a href="inscription.html" class="btn-primary"><i class="fas fa-rocket"></i> Devenir Artiste</a>
+                    <a href="#services" class="btn-outline"><i class="fas fa-chevron-down"></i> Nos Services</a>
                 </div>
             </div>
-            <div class="hero-illustration">
-                <!-- Illustration abstraite représentant la musique et la technologie -->
-                <img src="https://cdn.pixabay.com/photo/2020/04/15/12/10/music-5047330_1280.png" alt="Illustration musicale moderne" onerror="this.onerror=null; this.src='https://via.placeholder.com/550x400/7b2ff7/ffffff?text=CINEXAU+MUSIC';">
+            <div class="hero-visual">
+                <img src="https://cdn.pixabay.com/photo/2020/04/15/12/10/music-5047330_1280.png" alt="Artiste CINEXAU" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x500/ff7f3f/ffffff?text=CINEXAU+MUSIC';">
             </div>
         </div>
     </section>
 
-    <!-- Service Highlights Cards under hero -->
-    <div class="container service-highlights">
-        <div class="highlight-card">
-            <i class="fas fa-cloud-upload-alt"></i>
-            <h3>Distribution mondiale</h3>
-            <p>Spotify, Apple Music, Deezer et +100 plateformes.</p>
+    <!-- Counter Section -->
+    <div class="container counter-section">
+        <div class="counter-item">
+            <div class="counter-number" id="counterArtists">0</div>
+            <div class="counter-label">Artistes accompagnés</div>
         </div>
-        <div class="highlight-card">
-            <i class="fas fa-video"></i>
-            <h3>Clips IA & visuels</h3>
-            <p>Créations modernes pour accompagner vos sorties.</p>
+        <div class="counter-item">
+            <div class="counter-number" id="counterDistributions">0</div>
+            <div class="counter-label">Distributions réalisées</div>
         </div>
-        <div class="highlight-card">
-            <i class="fas fa-chart-line"></i>
-            <h3>Promotion ciblée</h3>
-            <p>Stratégies digitales pour booster votre visibilité.</p>
+        <div class="counter-item">
+            <div class="counter-number" id="counterBattles">0</div>
+            <div class="counter-label">Battles organisées</div>
+        </div>
+        <div class="counter-item">
+            <div class="counter-number" id="counterCountries">0</div>
+            <div class="counter-label">Pays touchés</div>
         </div>
     </div>
 
-    <!-- Services détaillés -->
-    <section id="services" class="services-detailed">
+    <!-- Services Section -->
+    <section id="services" class="services-section">
         <div class="container">
-            <h2 class="section-title">Nos services complets</h2>
-            <p class="section-subtitle">De l'enregistrement à la scène, nous prenons tout en charge avec professionnalisme.</p>
+            <div class="section-header">
+                <h2>Des services complets pour votre succès</h2>
+                <p>De la finition audio à la promotion, nous prenons en charge chaque étape avec créativité et professionnalisme.</p>
+            </div>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-sliders-h"></i></div>
                     <h3>Finition musicale</h3>
-                    <p>Mixage, mastering, équilibrage et optimisation audio pour un rendu radio-ready. Nous sublimons vos prises pour qu’elles sonnent comme les hits que vous aimez.</p>
-                    <a href="service-finition.html" class="btn-service">En savoir plus →</a>
+                    <p>Mixage, mastering, équilibrage. Donnez à vos morceaux la qualité radio qu'ils méritent.</p>
+                    <a href="service-finition.html" class="btn-service">En savoir plus</a>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-globe"></i></div>
+                    <div class="service-icon"><i class="fas fa-cloud-upload-alt"></i></div>
                     <h3>Distribution digitale</h3>
-                    <p>Placez votre musique sur Spotify, Apple Music, Deezer, YouTube Music, Amazon Music et bien d’autres. Nous gérons les métadonnées et les dates de sortie.</p>
-                    <a href="service-distribution.html" class="btn-service">En savoir plus →</a>
+                    <p>Placez votre musique sur Spotify, Apple Music, Deezer et plus de 100 plateformes.</p>
+                    <a href="service-distribution.html" class="btn-service">En savoir plus</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-user-circle"></i></div>
                     <h3>Pages pro & identité</h3>
-                    <p>Création et optimisation de vos profils artistes (Spotify for Artists, Apple Music for Artists, YouTube Officiel) avec bio, photos et bannières cohérentes.</p>
-                    <a href="service-pagespro.html" class="btn-service">En savoir plus →</a>
+                    <p>Optimisez vos profils d'artiste pour une image cohérente et professionnelle.</p>
+                    <a href="service-pagespro.html" class="btn-service">En savoir plus</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
                     <h3>Visuels artistiques</h3>
-                    <p>Pochettes d’album, covers single, flyers, affiches, bannières réseaux sociaux. Un univers graphique qui vous ressemble et attire l’œil.</p>
-                    <a href="service-visuels.html" class="btn-service">En savoir plus →</a>
+                    <p>Pochettes d'album, flyers, bannières : un univers graphique qui attire l'œil.</p>
+                    <a href="service-visuels.html" class="btn-service">En savoir plus</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-robot"></i></div>
-                    <h3>Clips AI & vidéos créatives</h3>
-                    <p>Des clips générés par intelligence artificielle, des paroles animées ou des concepts visuels uniques pour vos morceaux. Moderne et impactant.</p>
-                    <a href="service-clipsai.html" class="btn-service">En savoir plus →</a>
+                    <h3>Clips IA & vidéos</h3>
+                    <p>Des clips générés par intelligence artificielle pour un rendu unique et moderne.</p>
+                    <a href="service-clipsai.html" class="btn-service">En savoir plus</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-microphone-alt"></i></div>
                     <h3>Chansons personnalisées</h3>
-                    <p>Création sur mesure : chanson d’anniversaire, hommage, publicité, événement. Nous écrivons, composons et produisons selon votre besoin.</p>
-                    <a href="service-chansons.html" class="btn-service">En savoir plus →</a>
+                    <p>Création sur mesure : événement, publicité, hommage... Nous composons pour vous.</p>
+                    <a href="service-chansons.html" class="btn-service">En savoir plus</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-bullhorn"></i></div>
                     <h3>Promotion & visibilité</h3>
-                    <p>Campagnes de teasing, publications sponsorisées, playlists, communiqués de presse. Nous vous donnons la lumière que vous méritez.</p>
-                    <a href="service-promotion.html" class="btn-service">En savoir plus →</a>
+                    <p>Campagnes ciblées pour booster vos sorties et atteindre de nouveaux publics.</p>
+                    <a href="service-promotion.html" class="btn-service">En savoir plus</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-compass"></i></div>
                     <h3>Accompagnement carrière</h3>
-                    <p>Conseils en positionnement, stratégie de sortie, développement d’image, coaching artistique. Nous construisons votre avenir musical.</p>
-                    <a href="service-accompagnement.html" class="btn-service">En savoir plus →</a>
+                    <p>Conseils stratégiques, positionnement, développement d'image.</p>
+                    <a href="service-accompagnement.html" class="btn-service">En savoir plus</a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>Gestion présence digitale</h3>
-                    <p>Cohérence entre vos réseaux, optimisation SEO, calendrier éditorial, stories et réels. Une image numérique impeccable.</p>
-                    <a href="service-digital.html" class="btn-service">En savoir plus →</a>
+                    <p>Réseaux sociaux, SEO, contenus éditoriaux : maîtrisez votre image en ligne.</p>
+                    <a href="service-digital.html" class="btn-service">En savoir plus</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Comment ça marche -->
-    <section class="how-works">
+    <!-- Battles Preview -->
+    <section id="battles" class="battles-preview">
         <div class="container">
-            <h2 class="section-title">Comment ça marche ?</h2>
-            <p class="section-subtitle">Un processus simple pour passer de l’ombre à la lumière.</p>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h4>Inscription</h4>
-                    <p>Créez votre compte artiste gratuitement.</p>
+            <div class="section-header">
+                <h2>Battles musicales</h2>
+                <p>Participez à nos battles, faites voter le public et grimpez dans le classement.</p>
+            </div>
+            <div class="battle-card">
+                <div class="battle-info">
+                    <h3>Battle en cours : Afro Vibes</h3>
+                    <p style="color: #aaa;">Artiste A vs Artiste B</p>
+                    <a href="battles.html" class="btn-outline" style="margin-top: 20px;">Voir toutes les battles</a>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h4>Choisissez un service</h4>
-                    <p>Sélectionnez ce dont vous avez besoin dans votre tableau de bord.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h4>Échangez avec nous</h4>
-                    <p>Notre équipe vous accompagne via WhatsApp et messagerie.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h4>Lancement</h4>
-                    <p>Votre projet est livré et diffusé mondialement.</p>
+                <div class="battle-progress">
+                    <span>Artiste A - 65%</span>
+                    <div class="battle-bar"><div class="battle-fill" style="width:65%"></div></div>
+                    <span>Artiste B - 35%</span>
+                    <div class="battle-bar"><div class="battle-fill" style="width:35%"></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projets récents -->
-    <section class="projects" id="artistes">
+    <!-- FAQ -->
+    <section id="faq" class="faq-section">
         <div class="container">
-            <h2 class="section-title">Projets récents</h2>
-            <p class="section-subtitle">Découvrez quelques artistes que nous accompagnons.</p>
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="project-img"><i class="fas fa-headphones"></i></div>
-                    <div class="project-info">
-                        <h4>Album "Élévation"</h4>
-                        <p>Distribution sur 15 plateformes + cover design + clip AI.</p>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img"><i class="fas fa-music"></i></div>
-                    <div class="project-info">
-                        <h4>Single "Lumière"</h4>
-                        <p>Mixage & mastering + stratégie promotionnelle TikTok.</p>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img"><i class="fas fa-star"></i></div>
-                    <div class="project-info">
-                        <h4>EP "Nouveau Départ"</h4>
-                        <p>Accompagnement complet : image, visuels, distribution.</p>
-                    </div>
-                </div>
+            <div class="section-header">
+                <h2>Questions fréquentes</h2>
             </div>
-        </div>
-    </section>
-
-    <!-- FAQ détaillée -->
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2 class="section-title">Questions fréquentes</h2>
-            <div class="faq-container">
+            <div class="faq-grid">
                 <div class="faq-item">
-                    <div class="faq-question">Comment s'inscrire en tant qu'artiste ? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Cliquez sur « Espace Artiste » dans le menu, créez un compte avec votre email et un mot de passe. Vous accéderez à votre tableau de bord personnel pour demander des services.</div>
+                    <div class="faq-question">Comment créer un compte artiste ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Cliquez sur "Espace Artiste", inscrivez-vous avec votre email. Vous aurez accès à votre tableau de bord pour demander des services.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">Quels sont les tarifs ? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Chaque service a un tarif adapté à la complexité. Contactez-nous via WhatsApp pour un devis gratuit. Nous proposons aussi des packs combinés avantageux.</div>
+                    <div class="faq-question">Quels sont les délais de distribution ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">En moyenne 5 à 10 jours ouvrés selon les plateformes. Nous vous tenons informé à chaque étape.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">Combien de temps prend une distribution ? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Après validation, le morceau est livré aux plateformes sous 5 à 7 jours ouvrés. Nous vous tenons informé à chaque étape.</div>
+                    <div class="faq-question">Puis-je commander plusieurs services ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Absolument, votre tableau de bord permet de soumettre plusieurs demandes simultanément.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">Puis-je demander plusieurs services en même temps ? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Oui, votre tableau de bord vous permet de soumettre plusieurs demandes simultanément (distribution + visuels par exemple).</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Comment sont créés les clips IA ? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Nous utilisons des outils d’intelligence artificielle générative pour créer des séquences visuelles uniques, synchronisées avec votre musique, selon le thème choisi.</div>
+                    <div class="faq-question">Comment fonctionne l'assistance WhatsApp ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Notre équipe est disponible via le bouton WhatsApp pour répondre à toutes vos questions et vous guider.</div>
                 </div>
             </div>
         </div>
@@ -789,29 +759,28 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-content">
                 <div class="footer-col">
                     <h4>CINEXAU MUSIC HOUSE</h4>
-                    <p>Du talent brut à la scène mondiale. Maison de disques digitale nouvelle génération.</p>
-                    <div class="social-icons">
+                    <p style="color: #777;">Du talent brut à la scène mondiale.</p>
+                    <div class="social-links">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
                         <a href="#"><i class="fab fa-tiktok"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
                     <h4>Services</h4>
-                    <a href="service-finition.html">Finition musicale</a>
-                    <a href="service-distribution.html">Distribution</a>
-                    <a href="service-visuels.html">Visuels</a>
-                    <a href="service-promotion.html">Promotion</a>
+                    <a href="#">Finition musicale</a>
+                    <a href="#">Distribution</a>
+                    <a href="#">Visuels</a>
+                    <a href="#">Promotion</a>
                 </div>
                 <div class="footer-col">
-                    <h4>Liens utiles</h4>
-                    <a href="#">À propos</a>
-                    <a href="#">Devenir pro</a>
+                    <h4>Liens</h4>
                     <a href="#">Battles</a>
+                    <a href="#">Artistes</a>
+                    <a href="#">Professionnels</a>
                     <a href="#">Contact</a>
                 </div>
                 <div class="footer-col">
@@ -826,17 +795,59 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Float Button -->
+    <!-- WhatsApp Float -->
     <a href="https://wa.me/221652205768" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp fa-2x"></i> <span>Discutons sur WhatsApp</span>
+        <i class="fab fa-whatsapp fa-2x"></i> <span>Discuter sur WhatsApp</span>
     </a>
 
+    <!-- Scripts -->
     <script>
-        // FAQ accordéon
+        // Menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // FAQ Accordion
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {
                 item.classList.toggle('active');
             });
+        });
+
+        // Compteurs animés
+        function animateCounter(id, start, end, duration) {
+            let current = start;
+            const increment = end > start ? 1 : -1;
+            const stepTime = Math.abs(Math.floor(duration / (end - start)));
+            const obj = document.getElementById(id);
+            const timer = setInterval(() => {
+                current += increment;
+                obj.textContent = current + '+';
+                if (current === end) {
+                    clearInterval(timer);
+                    obj.textContent = end + '+';
+                }
+            }, stepTime);
+        }
+        // Déclenchement au scroll
+        const counterSection = document.querySelector('.counter-section');
+        let animated = false;
+        window.addEventListener('scroll', () => {
+            const rect = counterSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100 && !animated) {
+                animated = true;
+                animateCounter('counterArtists', 0, 250, 2000);
+                animateCounter('counterDistributions', 0, 1200, 2000);
+                animateCounter('counterBattles', 0, 45, 2000);
+                animateCounter('counterCountries', 0, 15, 2000);
+            }
         });
     </script>
 </body>
