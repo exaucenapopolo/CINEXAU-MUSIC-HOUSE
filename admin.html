@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | CINEXAU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI'; }
+        body { background:#0a0a0f; color:white; display:flex; }
+        .sidebar { width:250px; background:#101018; padding:25px; }
+        .sidebar a { display:block; color:#ccc; padding:12px; margin:5px 0; }
+        .sidebar a.active, .sidebar a:hover { background:#f9ca24; color:#000; border-radius:8px; }
+        .main { flex:1; padding:30px; }
+        table { width:100%; border-collapse:collapse; background:#151520; border-radius:12px; }
+        th, td { padding:15px; text-align:left; border-bottom:1px solid #2a2a3a; }
+        .badge { padding:5px 15px; border-radius:20px; }
+        .badge-waiting { background:#f0932b; }
+        .btn-validate { background:#25D366; color:white; padding:8px 15px; border:none; border-radius:20px; cursor:pointer; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>CINEXAU Admin</h2>
+        <a href="#" class="active" onclick="loadDemandes()"><i class="fas fa-inbox"></i> Demandes</a>
+        <a href="#"><i class="fas fa-users"></i> Artistes</a>
+        <a href="#"><i class="fas fa-user-friends"></i> Pros</a>
+        <a href="#" onclick="loadBattlesAdmin()"><i class="fas fa-trophy"></i> Battles</a>
+    </div>
+    <div class="main">
+        <h2>Gestion des demandes</h2>
+        <table id="demandesTable">
+            <thead><tr><th>Artiste</th><th>Type</th><th>Date</th><th>Statut</th><th>Action</th></tr></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script>
+        function loadDemandes() {
+            const demandes = JSON.parse(localStorage.getItem('cinexau_demandes') || '[]');
+            const tbody = document.querySelector('#demandesTable tbody');
+            tbody.innerHTML = demandes.map((d, i) => `
+                <tr>
+                    <td>${d.artiste}</td><td>${d.type}</td><td>${new Date(d.date).toLocaleDateString()}</td>
+                    <td><span class="badge badge-waiting">${d.statut}</span></td>
+                    <td><button class="btn-validate" onclick="valider(${i})">Valider</button></td>
+                </tr>
+            `).join('');
+        }
+        function valider(index) {
+            let demandes = JSON.parse(localStorage.getItem('cinexau_demandes'));
+            demandes[index].statut = 'Validé';
+            localStorage.setItem('cinexau_demandes', JSON.stringify(demandes));
+            loadDemandes();
+        }
+        loadDemandes();
+    </script>
+</body>
+</html>

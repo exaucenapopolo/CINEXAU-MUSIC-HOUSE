@@ -2,99 +2,283 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>CINEXAU MUSIC HOUSE | Du talent brut à la scène mondiale</title>
+    <!-- Font Awesome 6 pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        :root {
-            --bg-dark: #0a0a0a;
-            --text-light: #f4f4f4;
-            --accent: #d4af37; /* Or premium */
-            --accent-hover: #b5952f;
-            --card-bg: #1a1a1a;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.6; }
-        
-        /* Navigation */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: rgba(10, 10, 10, 0.9); position: fixed; width: 100%; top: 0; z-index: 1000; }
-        .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; }
-        .logo span { color: var(--accent); }
-        nav a { color: var(--text-light); text-decoration: none; margin-left: 30px; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: var(--accent); }
-        .btn-login { background: var(--accent); color: var(--bg-dark); padding: 10px 20px; border-radius: 4px; font-weight: bold; }
-        .btn-login:hover { background: var(--accent-hover); color: var(--bg-dark); }
-
-        /* Hero Section */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover; padding: 0 20px; }
-        .hero h1 { font-size: 3rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 3px; }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 30px; color: #ccc; }
-        .hero-keywords { font-weight: bold; color: var(--accent); letter-spacing: 1px; margin-bottom: 40px; display: block; }
-
-        /* Battles Section */
-        .battles { padding: 80px 50px; text-align: center; }
-        .battles h2 { font-size: 2.5rem; margin-bottom: 40px; }
-        .battles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .battle-card { background: var(--card-bg); padding: 30px; border-radius: 8px; border: 1px solid #333; transition: transform 0.3s; }
-        .battle-card:hover { transform: translateY(-10px); border-color: var(--accent); }
-        .vs { font-size: 1.5rem; font-weight: bold; color: var(--accent); margin: 15px 0; }
-        .vote-btn { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 8px 15px; margin-top: 15px; cursor: pointer; transition: 0.3s; width: 100%; }
-        .vote-btn:hover { background: var(--accent); color: var(--bg-dark); }
-
-        /* WhatsApp Float */
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 50px; padding: 15px 20px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s; }
-        .whatsapp-float:hover { transform: scale(1.1); }
+        body {
+            background: #0a0a0f;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 0 25px;
+        }
+        /* Header & Navigation */
+        header {
+            background: rgba(10,10,20,0.9);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #f9ca24, #f0932b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #f9ca24;
+        }
+        .btn-nav {
+            background: #f9ca24;
+            color: #000 !important;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-nav:hover {
+            background: #f0932b;
+            transform: scale(1.05);
+        }
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: radial-gradient(circle at 50% 30%, #1e1e2f, #0a0a0f);
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #f9ca24, #f0932b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero .slogan {
+            font-size: 1.5rem;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 14px 35px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .btn-primary {
+            background: #f9ca24;
+            color: #000;
+        }
+        .btn-outline {
+            border: 2px solid #f9ca24;
+            color: #f9ca24;
+            background: transparent;
+        }
+        .btn-primary:hover {
+            background: #f0932b;
+        }
+        .btn-outline:hover {
+            background: #f9ca24;
+            color: #000;
+        }
+        /* Sections */
+        section {
+            padding: 70px 0;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70%;
+            height: 3px;
+            background: #f9ca24;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .service-card {
+            background: #151520;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #2a2a3a;
+            transition: 0.3s;
+        }
+        .service-card:hover {
+            border-color: #f9ca24;
+            transform: translateY(-5px);
+        }
+        .service-card i {
+            font-size: 2.2rem;
+            color: #f9ca24;
+            margin-bottom: 15px;
+        }
+        .service-card h3 {
+            margin-bottom: 10px;
+        }
+        .faq-item {
+            background: #151520;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            border-left: 4px solid #f9ca24;
+        }
+        .faq-item h4 {
+            display: flex;
+            justify-content: space-between;
+        }
+        .faq-answer {
+            display: none;
+            margin-top: 15px;
+            color: #b0b0b0;
+        }
+        .footer {
+            background: #0d0d15;
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid #2a2a3a;
+        }
+        .social-icons a {
+            color: #ccc;
+            margin: 0 12px;
+            font-size: 1.3rem;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 25px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-
     <header>
-        <div class="logo">CINEXAU <span>MUSIC HOUSE</span></div>
-        <nav>
-            <a href="#services">Services</a>
-            <a href="#battles">Battles</a>
-            <a href="#reseau">Réseau Pro</a>
-            <a href="dashboard-artiste.html" class="btn-login">Connexion Artiste</a>
-        </nav>
+        <div class="container nav">
+            <div class="logo">CINEXAU MUSIC HOUSE</div>
+            <div class="nav-links">
+                <a href="#" class="active">Accueil</a>
+                <a href="#services">Services</a>
+                <a href="#artistes">Artistes</a>
+                <a href="#battles">Battles</a>
+                <a href="#faq">FAQ</a>
+                <a href="connexion.html" class="btn-nav"><i class="fas fa-user"></i> Espace Artiste</a>
+            </div>
+        </div>
     </header>
 
     <section class="hero">
-        <h1>Du talent brut à la scène mondiale</h1>
-        <p>La maison de disques digitale nouvelle génération. Produisez, distribuez et construisez votre image professionnelle au même endroit.</p>
-        <span class="hero-keywords">VISIBILITÉ | CROISSANCE | IMPACT</span>
-    </section>
-
-    <section id="battles" class="battles">
-        <h2>Zone Battles Musicales</h2>
-        <p style="margin-bottom: 40px; color: #ccc;">Votez pour les meilleurs talents de la semaine. Les gagnants bénéficient d'une mise en avant exclusive.</p>
-        <div class="battles-grid">
-            <div class="battle-card">
-                <h3>Artiste A</h3>
-                <div class="vs">VS</div>
-                <h3>Artiste B</h3>
-                <p style="margin-top: 10px; font-size: 0.9rem; color: #888;">Catégorie : Rap / Hip-Hop</p>
-                <button class="vote-btn" onclick="voter()">Voter maintenant</button>
-            </div>
-            <!-- D'autres cartes de battles peuvent s'ajouter ici -->
+        <h1>CINEXAU MUSIC HOUSE</h1>
+        <p class="slogan">Du talent brut à la scène mondiale</p>
+        <div class="cta-group">
+            <a href="inscription.html" class="btn btn-primary">Rejoindre en tant qu'artiste</a>
+            <a href="#services" class="btn btn-outline">Découvrir nos services</a>
         </div>
     </section>
 
-    <!-- Remplacer le numéro par le vôtre -->
-    <a href="https://wa.me/237600000000?text=Bonjour,%20j'ai%20besoin%20d'aide%20pour%20mon%20projet%20sur%20Cinexau" class="whatsapp-float" target="_blank">
-        Assistance WhatsApp
-    </a>
+    <section id="services" class="container">
+        <h2 class="section-title">Nos Services</h2>
+        <div class="services-grid">
+            <div class="service-card"><i class="fas fa-sliders-h"></i><h3>Finition musicale</h3><p>Mixage, mastering, équilibrage professionnel.</p></div>
+            <div class="service-card"><i class="fas fa-cloud-upload-alt"></i><h3>Distribution digitale</h3><p>Spotify, Apple Music, Deezer et plus.</p></div>
+            <div class="service-card"><i class="fas fa-user-circle"></i><h3>Pages pro artistes</h3><p>Création et optimisation de profils.</p></div>
+            <div class="service-card"><i class="fas fa-paint-brush"></i><h3>Visuels artistiques</h3><p>Covers, flyers, bannières.</p></div>
+            <div class="service-card"><i class="fas fa-video"></i><h3>Clips AI / Vidéos</h3><p>Contenus créatifs assistés par IA.</p></div>
+            <div class="service-card"><i class="fas fa-music"></i><h3>Chansons personnalisées</h3><p>Sur mesure pour événements.</p></div>
+            <div class="service-card"><i class="fas fa-bullhorn"></i><h3>Promotion</h3><p>Stratégie de visibilité digitale.</p></div>
+            <div class="service-card"><i class="fas fa-compass"></i><h3>Accompagnement</h3><p>Conseil carrière et image.</p></div>
+            <div class="service-card"><i class="fas fa-globe"></i><h3>Gestion présence digitale</h3><p>Cohérence et professionnalisation.</p></div>
+        </div>
+    </section>
+
+    <section id="faq" class="container">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq-item"><h4>Comment créer un compte artiste ? <i class="fas fa-chevron-down"></i></h4><div class="faq-answer">Cliquez sur "Espace Artiste" et remplissez le formulaire d'inscription.</div></div>
+        <div class="faq-item"><h4>Quels sont les délais de distribution ? <i class="fas fa-chevron-down"></i></h4><div class="faq-answer">Généralement 5 à 10 jours ouvrés selon les plateformes.</div></div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 CINEXAU MUSIC HOUSE - Tous droits réservés.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/221XXXXXXXXX" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i> Assistance</a>
 
     <script>
-        function voter() {
-            alert("Pour voter, veuillez vous connecter ou créer un compte public.");
-        }
-        // Changement de fond du header au scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.background = '#0a0a0a';
-            } else {
-                header.style.background = 'rgba(10, 10, 10, 0.9)';
-            }
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
         });
     </script>
 </body>

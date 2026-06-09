@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Battles Musicales | CINEXAU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { background:#0a0a0f; color:white; font-family:'Segoe UI'; padding:20px; }
+        .battle-box { background:#151520; padding:25px; border-radius:16px; margin:20px auto; max-width:700px; }
+        .artistes-battle { display:flex; justify-content:space-around; margin:20px 0; }
+        .artiste { text-align:center; }
+        .vote-btn { background:#f9ca24; color:#000; padding:10px 25px; border-radius:30px; border:none; cursor:pointer; }
+        progress { width:100%; height:20px; }
+    </style>
+</head>
+<body>
+    <h2>Battle en cours</h2>
+    <div class="battle-box">
+        <div class="artistes-battle">
+            <div class="artiste">
+                <h3>Artiste A</h3>
+                <audio controls><source src="#" type="audio/mpeg"></audio>
+                <button class="vote-btn" onclick="voter('A')">Voter</button>
+            </div>
+            <div class="artiste">
+                <h3>Artiste B</h3>
+                <audio controls><source src="#" type="audio/mpeg"></audio>
+                <button class="vote-btn" onclick="voter('B')">Voter</button>
+            </div>
+        </div>
+        <progress id="progressA" value="30" max="100"></progress>
+        <progress id="progressB" value="70" max="100"></progress>
+    </div>
+    <script>
+        let votes = { A: 30, B: 70 };
+        function voter(artiste) {
+            votes[artiste]++;
+            document.getElementById(`progress${artiste}`).value = votes[artiste];
+            alert('Vote enregistré !');
+        }
+    </script>
+</body>
+</html>

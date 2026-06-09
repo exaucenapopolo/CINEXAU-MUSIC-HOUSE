@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Professionnels | CINEXAU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI'; }
+        body { background:#0a0a0f; color:white; padding:30px; }
+        .container { max-width:1000px; margin:auto; }
+        .form-pro { background:#151520; padding:25px; border-radius:16px; margin-bottom:30px; }
+        input, select, textarea { width:100%; padding:12px; margin:8px 0; background:#1e1e2f; border:1px solid #2a2a3a; color:white; border-radius:8px; }
+        .btn { background:#f9ca24; color:#000; padding:12px 30px; border:none; border-radius:30px; font-weight:bold; }
+        .card { background:#151520; padding:20px; border-radius:12px; margin:15px 0; display:flex; gap:20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Espace Professionnels</h1>
+        <div class="form-pro">
+            <h3>Inscrivez-vous comme collaborateur</h3>
+            <input type="text" id="proNom" placeholder="Nom / Studio">
+            <select id="proType"><option>Manager</option><option>Beatmaker</option><option>Vidéaste</option></select>
+            <input type="email" id="proEmail" placeholder="Email">
+            <textarea placeholder="Description"></textarea>
+            <button class="btn" onclick="inscrirePro()">S'inscrire</button>
+        </div>
+        <h2>Profils enregistrés</h2>
+        <div id="listePros"></div>
+    </div>
+    <script>
+        function inscrirePro() {
+            const nom = document.getElementById('proNom').value;
+            const type = document.getElementById('proType').value;
+            let pros = JSON.parse(localStorage.getItem('cinexau_pros')||'[]');
+            pros.push({nom, type});
+            localStorage.setItem('cinexau_pros', JSON.stringify(pros));
+            afficherPros();
+        }
+        function afficherPros() {
+            const pros = JSON.parse(localStorage.getItem('cinexau_pros')||'[]');
+            document.getElementById('listePros').innerHTML = pros.map(p => 
+                `<div class="card"><strong>${p.nom}</strong> - ${p.type}</div>`).join('');
+        }
+        afficherPros();
+    </script>
+</body>
+</html>
