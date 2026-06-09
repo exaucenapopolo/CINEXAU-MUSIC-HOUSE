@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CINEXAU MUSIC HOUSE | Du talent brut à la scène mondiale</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --text-light: #f4f4f4;
+            --accent: #d4af37; /* Or premium */
+            --accent-hover: #b5952f;
+            --card-bg: #1a1a1a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.6; }
+        
+        /* Navigation */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: rgba(10, 10, 10, 0.9); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; }
+        .logo span { color: var(--accent); }
+        nav a { color: var(--text-light); text-decoration: none; margin-left: 30px; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: var(--accent); }
+        .btn-login { background: var(--accent); color: var(--bg-dark); padding: 10px 20px; border-radius: 4px; font-weight: bold; }
+        .btn-login:hover { background: var(--accent-hover); color: var(--bg-dark); }
+
+        /* Hero Section */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover; padding: 0 20px; }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 3px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 30px; color: #ccc; }
+        .hero-keywords { font-weight: bold; color: var(--accent); letter-spacing: 1px; margin-bottom: 40px; display: block; }
+
+        /* Battles Section */
+        .battles { padding: 80px 50px; text-align: center; }
+        .battles h2 { font-size: 2.5rem; margin-bottom: 40px; }
+        .battles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .battle-card { background: var(--card-bg); padding: 30px; border-radius: 8px; border: 1px solid #333; transition: transform 0.3s; }
+        .battle-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .vs { font-size: 1.5rem; font-weight: bold; color: var(--accent); margin: 15px 0; }
+        .vote-btn { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 8px 15px; margin-top: 15px; cursor: pointer; transition: 0.3s; width: 100%; }
+        .vote-btn:hover { background: var(--accent); color: var(--bg-dark); }
+
+        /* WhatsApp Float */
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 50px; padding: 15px 20px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">CINEXAU <span>MUSIC HOUSE</span></div>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#battles">Battles</a>
+            <a href="#reseau">Réseau Pro</a>
+            <a href="dashboard-artiste.html" class="btn-login">Connexion Artiste</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Du talent brut à la scène mondiale</h1>
+        <p>La maison de disques digitale nouvelle génération. Produisez, distribuez et construisez votre image professionnelle au même endroit.</p>
+        <span class="hero-keywords">VISIBILITÉ | CROISSANCE | IMPACT</span>
+    </section>
+
+    <section id="battles" class="battles">
+        <h2>Zone Battles Musicales</h2>
+        <p style="margin-bottom: 40px; color: #ccc;">Votez pour les meilleurs talents de la semaine. Les gagnants bénéficient d'une mise en avant exclusive.</p>
+        <div class="battles-grid">
+            <div class="battle-card">
+                <h3>Artiste A</h3>
+                <div class="vs">VS</div>
+                <h3>Artiste B</h3>
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #888;">Catégorie : Rap / Hip-Hop</p>
+                <button class="vote-btn" onclick="voter()">Voter maintenant</button>
+            </div>
+            <!-- D'autres cartes de battles peuvent s'ajouter ici -->
+        </div>
+    </section>
+
+    <!-- Remplacer le numéro par le vôtre -->
+    <a href="https://wa.me/237600000000?text=Bonjour,%20j'ai%20besoin%20d'aide%20pour%20mon%20projet%20sur%20Cinexau" class="whatsapp-float" target="_blank">
+        Assistance WhatsApp
+    </a>
+
+    <script>
+        function voter() {
+            alert("Pour voter, veuillez vous connecter ou créer un compte public.");
+        }
+        // Changement de fond du header au scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = '#0a0a0a';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>
